@@ -22,17 +22,31 @@ if [ -f $PARAM ]; then
     . "$PARAM"
 fi
 
-case "${1:-}" in
-  stop|reload|restart|force-reload)
-        echo "I don't use this, I never stop"
-        ;;
-  start)
-        echo "Starting bot"
-        source /home/pi/folha-reddit/.env && \
+stop() {
+    # only bot running as py 3.5 atm
+    pgrep python3.5 | xargs kill
+}
+
+run() {
+    source /home/pi/folha-reddit/.env && \
                 nohup /home/pi/.venvs/folha/bin/python3.5 /home/pi/folha-reddit/main.py &
+}
+
+case "${1:-}" in
+    stop)
+        echo "I don't use this, I never stop"
+        echo "Ok, I actually do stop"
+        stop
+        ;;
+    restart|reload|force-reload)
+        stop
+        run
+        ;;
+    start)
+        echo "Starting bot"
         ;;
 
-  *)
+    *)
         echo "Usage: ${0:-} {start|stop|status|restart|reload|force-reload}" >&2
         exit 1
         ;;

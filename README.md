@@ -6,12 +6,7 @@ Instale as dependências:
 > $ pip install -r requirements.pip
 
 Instale as dependências (Ubuntu 15.10):
-> sudo apt-get install build-essential libncursesw5-dev libgdbm-dev libc6-dev && \
-                                                       zlib1g-dev libsqlite3-dev tk-dev && \
-                                                       libssl-dev openssl && \
-                                                       python3-dev && \
-                                                       libxml2-dev && \
-                                                       libxslt1-dev libffi-dev
+> sudo apt-get install build-essential libncursesw5-dev libgdbm-dev libc6-dev zlib1g-dev libsqlite3-dev tk-dev libssl-dev openssl python3-dev libxml2-dev libxslt1-dev libffi-dev
 
 
 Configure um arquivo com as variáveis de ambiente necessárias:

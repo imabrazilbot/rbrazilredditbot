@@ -14,11 +14,12 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(level
 def main():
     reddit_conn = utils.reddit_login()
     imgur_conn = utils.imgur_login()
+    posts = []
     while True:
         try:
             for post in utils.subreddits_posts(reddit_conn):
                 if post.id not in posts:
-                    logging.info('New post: {}'.format(post.id))
+                    logging.info('new post: {}'.format(post.id))
                     url = utils.parse_url(post.url)
                     logging.info("parsed url: {}, post: {}".format(url, post))
                     if not url:
@@ -28,7 +29,7 @@ def main():
 
                     response = utils.readability_response(url)
                     if not response:
-                        # do not retry it.
+                        # do not retry it. if readability failed to parse, there is nothing we can do
                         posts.append(post.id)
                         logging.warning('something went wrong with readability {}'.format(response))
                         continue
@@ -59,7 +60,7 @@ def main():
                     posts.append(post.id)
 
             logging.info("waiting...")
-            time.sleep(900)
+            time.sleep(config.SLEEP_TIME)
         except KeyboardInterrupt:
             break
         except Exception as e:

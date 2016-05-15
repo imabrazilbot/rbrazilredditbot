@@ -26,3 +26,9 @@ Configure um arquivo com as variáveis de ambiente necessárias:
 
 Execute agora:
 > source .env && ./main.py
+
+# Informações interessantes
+Infelizmente, a API do imgur não possui uma forma de fazer upload de uma imagem em memória.
+O correto seria passar uma string com os dados da imagem ao invés de escrever um arquivo em disco.
+O Weasyprint possui muitas, muitas dependências. Felizmente ele funciona muito bem.
+Nem sempre o readability consegue resolver a página do OGlobo, fazendo com que alguns posts fiquem vazios. No entanto, ainda não tive tempo para analisar o motivo.

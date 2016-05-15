@@ -13,7 +13,7 @@ import config
 
 
 def save_as_image(html, filename):
-    '''Uses Weasyprint to convert HTML to Image.'''
+    '''Uses Weasyprint to convert HTML to a PNG.'''
     logging.info("reading html file... {}".format(html))
     wp = weasyprint.HTML(string=html)
 
@@ -27,7 +27,7 @@ def readability_response(url):
     response = requests.get(req_url).json()
     error = response.get('error', None)
     if error:
-        logging.warning("Error reason: ".format(error))
+        logging.warning("error reason: ".format(error))
         return None
     return response
 
@@ -97,7 +97,7 @@ def parse_url(news_url):
 
 def print_folha_url(url):
     return 'http://tools.folha.com.br/print?site=emcimadahora&url={}'.format(url)
-    
+
 
 def subreddits_posts(conn):
     submissions = []
@@ -109,7 +109,7 @@ def subreddits_posts(conn):
             for submission in conn.get_subreddit(sub).get_new():
                 submissions.append(submission)
 
-    get_submissions_from_subreddits(['brasil', 'BrasildoB'])
+    get_submissions_from_subreddits(config.SUBREDDITS)
     for submission in submissions:
         if 'folha.uol' in submission.url or 'oglobo' in submission.url:
             yield submission

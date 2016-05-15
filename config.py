@@ -9,5 +9,6 @@ IMGUR_API_SECRET = os.getenv("IMGUR_API_SECRET")
 READABILITY_TOKEN = os.getenv("READABILITY_TOKEN")
 READABILITY_API_URL = 'http://www.readability.com/api/content/v1/parser?url={}&token=%s' % READABILITY_TOKEN
 
-HTML_FILENAME = 'readme.html'
 DOWNLOAD_FILENAME = 'download.png'
+SLEEP_TIME = 900  # seconds
+SUBREDDITS = ['brasil', 'BrasildoB']
